@@ -1,0 +1,836 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Md Zeeshan Sardar - Web Developer Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f4f4f4;
+        }
+
+        /* Dark Mode Toggle */
+        body.dark-mode {
+            background: #1a1a1a;
+            color: #f4f4f4;
+        }
+
+        body.dark-mode nav {
+            background: #222;
+            border-bottom: 1px solid #444;
+        }
+
+        body.dark-mode section {
+            background: #222;
+            color: #f4f4f4;
+        }
+
+        body.dark-mode h2, body.dark-mode h3 {
+            color: #00bfff;
+        }
+
+        body.dark-mode .card {
+            background: #333;
+            border: 1px solid #444;
+        }
+
+        body.dark-mode .btn {
+            background: #00bfff;
+            color: #222;
+        }
+
+        body.dark-mode .btn:hover {
+            background: #00a8cc;
+        }
+
+        /* Header & Navigation */
+        nav {
+            background: white;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        nav h1 {
+            font-size: 1.5rem;
+            color: #0066cc;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #0066cc;
+        }
+
+        .theme-toggle {
+            background: #0066cc;
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+        }
+
+        .theme-toggle:hover {
+            background: #0052a3;
+        }
+
+        /* Main Sections */
+        section {
+            padding: 4rem 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            margin-bottom: 2rem;
+            border-radius: 8px;
+        }
+
+        .hero {
+            text-align: center;
+            background: linear-gradient(135deg, #0066cc 0%, #00bfff 100%);
+            color: white;
+            padding: 5rem 2rem;
+            margin-bottom: 0;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            margin-bottom: 2rem;
+            opacity: 0.95;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 0.8rem 2rem;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn-primary {
+            background: white;
+            color: #0066cc;
+            font-weight: bold;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .btn-secondary {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+
+        .btn-secondary:hover {
+            background: white;
+            color: #0066cc;
+        }
+
+        /* Section Headings */
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 2rem;
+            color: #0066cc;
+            border-bottom: 3px solid #0066cc;
+            padding-bottom: 1rem;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-top: 1.5rem;
+            color: #0066cc;
+        }
+
+        /* About Section */
+        .about-content {
+            line-height: 1.8;
+            margin-bottom: 2rem;
+        }
+
+        .stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+
+        .stat-box {
+            background: #f0f8ff;
+            padding: 1.5rem;
+            text-align: center;
+            border-radius: 8px;
+            border-left: 4px solid #0066cc;
+        }
+
+        body.dark-mode .stat-box {
+            background: #333;
+            border-left-color: #00bfff;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: bold;
+            color: #0066cc;
+        }
+
+        body.dark-mode .stat-number {
+            color: #00bfff;
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            color: #666;
+            margin-top: 0.5rem;
+        }
+
+        body.dark-mode .stat-label {
+            color: #aaa;
+        }
+
+        /* Experience & Education */
+        .timeline {
+            margin: 2rem 0;
+        }
+
+        .timeline-item {
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #0066cc;
+            background: #f9f9f9;
+            border-radius: 5px;
+        }
+
+        body.dark-mode .timeline-item {
+            background: #333;
+            border-left-color: #00bfff;
+        }
+
+        .timeline-item h4 {
+            color: #0066cc;
+            margin-bottom: 0.5rem;
+        }
+
+        body.dark-mode .timeline-item h4 {
+            color: #00bfff;
+        }
+
+        .timeline-item .company {
+            font-weight: bold;
+            color: #666;
+        }
+
+        body.dark-mode .timeline-item .company {
+            color: #aaa;
+        }
+
+        .timeline-item .duration {
+            font-size: 0.9rem;
+            color: #999;
+            margin-bottom: 0.5rem;
+        }
+
+        .skills-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+
+        .skill-tag {
+            background: #e6f2ff;
+            color: #0066cc;
+            padding: 0.7rem 1rem;
+            border-radius: 20px;
+            text-align: center;
+            font-weight: 500;
+        }
+
+        body.dark-mode .skill-tag {
+            background: #004d99;
+            color: #00bfff;
+        }
+
+        /* Projects */
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .card {
+            background: white;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 20px rgba(0,0,0,0.2);
+        }
+
+        .card-image {
+            width: 100%;
+            height: 200px;
+            background: linear-gradient(135deg, #0066cc, #00bfff);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 3rem;
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.3rem;
+            margin-bottom: 0.5rem;
+            color: #0066cc;
+        }
+
+        body.dark-mode .card-title {
+            color: #00bfff;
+        }
+
+        .card-description {
+            color: #666;
+            margin-bottom: 1rem;
+            font-size: 0.95rem;
+        }
+
+        body.dark-mode .card-description {
+            color: #aaa;
+        }
+
+        .card-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .tag {
+            background: #f0f8ff;
+            color: #0066cc;
+            padding: 0.3rem 0.8rem;
+            border-radius: 15px;
+            font-size: 0.85rem;
+        }
+
+        body.dark-mode .tag {
+            background: #004d99;
+            color: #00bfff;
+        }
+
+        .card-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .card-links a {
+            flex: 1;
+            text-align: center;
+            padding: 0.7rem;
+            background: #0066cc;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+
+        .card-links a:hover {
+            background: #0052a3;
+        }
+
+        /* Contact Form */
+        .contact-form {
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+            color: #333;
+        }
+
+        body.dark-mode label {
+            color: #f4f4f4;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid #ddd;
+            border-radius: 5px;
+            font-family: inherit;
+            font-size: 1rem;
+        }
+
+        body.dark-mode input,
+        body.dark-mode textarea {
+            background: #333;
+            color: #f4f4f4;
+            border-color: #555;
+        }
+
+        textarea {
+            resize: vertical;
+            min-height: 150px;
+        }
+
+        .contact-form .btn {
+            width: 100%;
+            background: #0066cc;
+            color: white;
+            padding: 1rem;
+            font-weight: bold;
+        }
+
+        .contact-form .btn:hover {
+            background: #0052a3;
+        }
+
+        /* Social Links */
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin: 2rem 0;
+        }
+
+        .social-links a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 50px;
+            height: 50px;
+            background: #0066cc;
+            color: white;
+            border-radius: 50%;
+            text-decoration: none;
+            transition: background 0.3s, transform 0.3s;
+        }
+
+        .social-links a:hover {
+            background: #0052a3;
+            transform: scale(1.1);
+        }
+
+        /* Footer */
+        footer {
+            background: #222;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+
+        /* Mobile Responsive */
+        @media (max-width: 768px) {
+            nav {
+                flex-direction: column;
+                gap: 1rem;
+            }
+
+            .nav-links {
+                flex-direction: column;
+                gap: 1rem;
+                text-align: center;
+            }
+
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            section {
+                padding: 2rem 1rem;
+            }
+
+            h2 {
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Smooth Scrolling */
+        html {
+            scroll-behavior: smooth;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <h1>ZS</h1>
+        <ul class="nav-links">
+            <li><a href="#home">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#contact">Contact</a></li>
+        </ul>
+        <button class="theme-toggle" onclick="toggleDarkMode()">🌙 Dark</button>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <h1>Md Zeeshan Sardar</h1>
+        <p>Web Developer with 20 Years of Experience</p>
+        <p style="font-size: 1rem; margin-bottom: 2rem;">Full-stack developer specializing in modern web technologies and scalable applications.</p>
+        <div class="hero-buttons">
+            <a href="https://example.com/download-cv.pdf" class="btn btn-primary" target="_blank">Download CV</a>
+            <a href="#contact" class="btn btn-secondary">Contact Me</a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about">
+        <h2>About Me</h2>
+        <div class="about-content">
+            <p>With over 20 years of experience in web development, I've had the privilege to work with some of the world's leading technology companies. I specialize in building scalable, high-performance web applications using modern JavaScript frameworks and cloud technologies.</p>
+            <p style="margin-top: 1rem;">My passion lies in creating elegant solutions to complex problems, mentoring junior developers, and staying at the forefront of web technology innovation.</p>
+        </div>
+        
+        <h3>Quick Stats</h3>
+        <div class="stats">
+            <div class="stat-box">
+                <div class="stat-number">20+</div>
+                <div class="stat-label">Years Experience</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">50+</div>
+                <div class="stat-label">Projects Completed</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">100+</div>
+                <div class="stat-label">Happy Clients</div>
+            </div>
+            <div class="stat-box">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Tech Skills</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <h2>Experience</h2>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>Senior Web Developer</h4>
+                <div class="company">Microsoft</div>
+                <div class="duration">2010 – Present</div>
+                <p>Leading full-stack development of cloud-based solutions. Architecting scalable microservices and mentoring junior developers.</p>
+                <div class="skills-container">
+                    <span class="skill-tag">React</span>
+                    <span class="skill-tag">Node.js</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">TypeScript</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Web Engineer</h4>
+                <div class="company">Google</div>
+                <div class="duration">2005 – 2010</div>
+                <p>Developed and maintained high-traffic web applications. Contributed to core infrastructure and frontend frameworks.</p>
+                <div class="skills-container">
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Python</span>
+                    <span class="skill-tag">GCP</span>
+                    <span class="skill-tag">Angular</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h4>UI/UX Developer</h4>
+                <div class="company">Apple</div>
+                <div class="duration">2000 – 2005</div>
+                <p>Designed and implemented user interfaces for macOS and iOS applications with focus on accessibility.</p>
+                <div class="skills-container">
+                    <span class="skill-tag">Objective-C</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">CSS3</span>
+                    <span class="skill-tag">UX Design</span>
+                </div>
+            </div>
+
+            <div class="timeline-item">
+                <h4>Full-Stack Developer</h4>
+                <div class="company">Meta</div>
+                <div class="duration">1995 – 2000</div>
+                <p>Built social networking features and backend services. Optimized database queries and improved system performance.</p>
+                <div class="skills-container">
+                    <span class="skill-tag">PHP</span>
+                    <span class="skill-tag">MySQL</span>
+                    <span class="skill-tag">JavaScript</span>
+                    <span class="skill-tag">Scaling</span>
+                </div>
+            </div>
+        </div>
+
+        <h3>Education</h3>
+        <div class="timeline">
+            <div class="timeline-item">
+                <h4>M.Tech in Computer Science</h4>
+                <div class="company">IIT Delhi</div>
+                <div class="duration">1995</div>
+                <p>Advanced studies in computer science with focus on algorithms and distributed systems.</p>
+            </div>
+
+            <div class="timeline-item">
+                <h4>B.Tech in Computer Science</h4>
+                <div class="company">IIT Bombay</div>
+                <div class="duration">1993</div>
+                <p>Foundational computer science education with honors.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Skills Section -->
+    <section id="skills">
+        <h2>Skills & Technologies</h2>
+        
+        <h3>Frontend</h3>
+        <div class="skills-container">
+            <span class="skill-tag">HTML5</span>
+            <span class="skill-tag">CSS3</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Angular</span>
+            <span class="skill-tag">Vue.js</span>
+        </div>
+
+        <h3>Backend</h3>
+        <div class="skills-container">
+            <span class="skill-tag">Node.js</span>
+            <span class="skill-tag">Express</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">Django</span>
+            <span class="skill-tag">Flask</span>
+            <span class="skill-tag">PHP</span>
+        </div>
+
+        <h3>Database & Tools</h3>
+        <div class="skills-container">
+            <span class="skill-tag">MongoDB</span>
+            <span class="skill-tag">MySQL</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">AWS</span>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <h2>Featured Projects</h2>
+        <div class="projects-grid">
+            <div class="card">
+                <div class="card-image">📱</div>
+                <div class="card-content">
+                    <h3 class="card-title">E-Commerce Platform</h3>
+                    <p class="card-description">Full-stack e-commerce application with real-time inventory management and payment processing.</p>
+                    <div class="card-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">MongoDB</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="#" target="_blank">View Demo</a>
+                        <a href="https://github.com/yourusername/ecommerce-platform" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">✓</div>
+                <div class="card-content">
+                    <h3 class="card-title">Task Management App</h3>
+                    <p class="card-description">Collaborative task management tool with real-time updates and team collaboration features.</p>
+                    <div class="card-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Firebase</span>
+                        <span class="tag">Tailwind</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="#" target="_blank">View Demo</a>
+                        <a href="https://github.com/yourusername/task-manager" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">📊</div>
+                <div class="card-content">
+                    <h3 class="card-title">Analytics Dashboard</h3>
+                    <p class="card-description">Data visualization dashboard with interactive charts and real-time metrics tracking.</p>
+                    <div class="card-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">D3.js</span>
+                        <span class="tag">Node.js</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="#" target="_blank">View Demo</a>
+                        <a href="https://github.com/yourusername/analytics-dashboard" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <div class="card-image">💬</div>
+                <div class="card-content">
+                    <h3 class="card-title">Social Media App</h3>
+                    <p class="card-description">Social networking platform with user profiles, messaging, notifications, and content sharing.</p>
+                    <div class="card-tags">
+                        <span class="tag">React</span>
+                        <span class="tag">Node.js</span>
+                        <span class="tag">Socket.io</span>
+                    </div>
+                    <div class="card-links">
+                        <a href="#" target="_blank">View Demo</a>
+                        <a href="https://github.com/yourusername/social-app" target="_blank">GitHub</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <h2>Get In Touch</h2>
+        <p style="text-align: center; margin-bottom: 2rem;">Have a project in mind? Let's work together!</p>
+        
+        <div class="contact-form">
+            <form id="contactForm">
+                <div class="form-group">
+                    <label for="name">Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" id="subject" name="subject" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" name="message" required></textarea>
+                </div>
+
+                <button type="submit" class="btn">Send Message</button>
+            </form>
+        </div>
+
+        <h3 style="margin-top: 3rem;">Connect With Me</h3>
+        <div class="social-links">
+            <a href="https://github.com/yourusername" target="_blank" title="GitHub">🐙</a>
+            <a href="https://linkedin.com/in/yourprofile" target="_blank" title="LinkedIn">in</a>
+            <a href="mailto:zeeshan@example.com" title="Email">✉</a>
+            <a href="https://twitter.com/yourhandle" target="_blank" title="Twitter">𝕏</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2024 Md Zeeshan Sardar. All rights reserved.</p>
+        <p>Made with ❤️ | <a href="#home" style="color: #00bfff;">Back to Top</a></p>
+    </footer>
+
+    <script>
+        // Dark Mode Toggle
+        function toggleDarkMode() {
+            document.body.classList.toggle('dark-mode');
+            localStorage.setItem('darkMode', document.body.classList.contains('dark-mode'));
+        }
+
+        // Load dark mode preference
+        window.addEventListener('load', function() {
+            if (localStorage.getItem('darkMode') === 'true') {
+                document.body.classList.add('dark-mode');
+            }
+        });
+
+        // Contact Form Handling
+        document.getElementById('contactForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Thank you for your message! I will get back to you soon.\n\nNote: To enable real email sending, integrate with EmailJS or a backend service.');
+            this.reset();
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
